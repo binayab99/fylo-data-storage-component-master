@@ -1,10 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap");
 
-$gradient: hsl(6, 100%, 80%) to hsl(335, 100%, 65%);
+$gradient-light: hsl(6, 100%, 80%);
+$gradient-dark: hsl(335, 100%, 65%);
 $paleBlue: hsl(243, 100%, 93%);
 $grayishBlue: hsl(229, 7%, 55%);
 $darkBlue: hsl(228, 56%, 26%);
 $veryDarkBlue: hsl(229, 57%, 11%);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
 
 html {
   box-sizing: border-box;
@@ -18,38 +25,189 @@ html {
 
 body {
   position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: center;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
   font-weight: 400;
   background-color: $veryDarkBlue;
   color: $paleBlue;
-  border: 0;
-  padding: 0;
+  height: 100vh;
 }
 
-.container {
+h2 {
+  font-size: 2rem;
+  color: $veryDarkBlue;
+  margin: 0;
+}
+
+.background {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+  background: no-repeat center/cover url("/images/bg-desktop.png");
+  z-index: -10;
+
+  @media (max-width: 900px) {
+    height: 100vh;
+    background: no-repeat center/cover url("/images/bg-mobile.png");
+  }
+}
+
+.container-main {
   display: flex;
-  // padding: 2rem;
-  // height: 100vh;
-  // margin: auto 0;
-  justify-content: center;
-  vertical-align: middle;
+  gap: 2rem;
 
-  &-logo {
-    padding: 2rem;
-    border-radius: 10px 180px 10px 10px;
-    display: inline-flex;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .container-fylo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     background-color: $darkBlue;
+    border-radius: 10px 100px 10px 10px;
+    padding: 2rem 7rem 2rem 2rem;
 
-    .icons {
+    @media (max-width: 900px) {
       padding: 2rem;
+    }
+
+    .logo {
+      width: 135px;
+      height: 40px;
+      background: no-repeat center/contain url("/images/logo.svg");
+    }
+
+    .container-buttons {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .button {
+        display: flex;
+        align-items: center;
+        background-color: $veryDarkBlue;
+        padding: 1rem;
+        border-radius: 10px;
+        height: 50px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 
-  &-space {
-  }
-}
+  .container-space {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: $darkBlue;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: auto;
+    width: 500px;
 
-.attribution {
-  display: none;
+    @media (max-width: 900px) {
+      width: 330px;
+
+      p {
+        text-align: center;
+      }
+    }
+
+    > p > span {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .progress {
+      display: inline-flex;
+      width: 100%;
+      height: 20px;
+      background-color: $veryDarkBlue;
+      border-radius: 20px;
+
+      .gradient {
+        display: flex;
+        justify-content: flex-end;
+        width: 75%;
+        height: 100%;
+        border: 3px solid $veryDarkBlue;
+        border-radius: 20px;
+        background: linear-gradient(to right, $gradient-light, $gradient-dark);
+        margin-block: auto;
+
+        .circle {
+          width: 15px;
+          height: 100%;
+          background-color: white;
+          border-radius: 50%;
+          border: 2px solid $gradient-dark;
+        }
+      }
+    }
+
+    .gb {
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .container-remaining {
+      position: absolute;
+      top: -40px;
+      right: 30px;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+
+      @media (max-width: 900px) {
+        top: 135px;
+        right: 90px;
+      }
+
+      h2 {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      span {
+        font-weight: bold;
+        color: $grayishBlue;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      .tail {
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+        height: 40px;
+        width: 20px;
+        background-color: white;
+
+        @media (max-width: 900px) {
+          display: none;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-bottom: 20px solid $darkBlue;
+          border-right: 20px solid white;
+        }
+      }
+    }
+  }
 }
